@@ -72,3 +72,11 @@ acceptance prerequisite by explicit project-owner direction; it does not mark
 the mission accepted and does not hide the outstanding implementation gaps.
 The merge is performed as a normal non-rewriting merge so the baseline and
 follow-up evidence remain visible in repository history.
+
+## 2026-08-10 â€” post-merge review environment limitation
+
+The Spec Kitty post-merge review command could not run because the active
+Spec Kitty Python interpreter does not have `pytest` installed. The command
+reported `MISSION_REVIEW_TEST_EXTRA_MISSING` and recommended `uv sync --extra
+test`. No dependency installation or external data pull was performed; Zig
+build/test and CSV validation were run directly instead.
