@@ -16,8 +16,8 @@ requirement_refs:
 tracker_refs:
 - https://github.com/sej69/property_tax/issues/12
 planning_base_branch: kitty/mission-property-tax-explorer-01KZPH51
-merge_target_branch: kitty/mission-property-tax-explorer-01KZPH51
-branch_strategy: Planning artifacts for this mission were generated on kitty/mission-property-tax-explorer-01KZPH51. During /spec-kitty.implement this WP may branch from a dependency-specific base, but completed changes must merge back into kitty/mission-property-tax-explorer-01KZPH51 unless the human explicitly redirects the landing branch.
+merge_target_branch: main
+branch_strategy: Planning artifacts for this mission were generated on kitty/mission-property-tax-explorer-01KZPH51. During /spec-kitty.implement this WP may branch from a dependency-specific base, but completed changes must merge back into main unless the human explicitly redirects the landing branch.
 subtasks:
 - T031
 - T032
