@@ -16,6 +16,9 @@ venv/
 zig-out/
 .zig-cache/
 
+# Spec Kitty lane and coordination worktrees
+.worktrees/
+
 # Local editor and operating-system files
 .vscode/
 .idea/
