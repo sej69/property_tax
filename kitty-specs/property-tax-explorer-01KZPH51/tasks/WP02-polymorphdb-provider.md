@@ -29,6 +29,8 @@ owned_files:
 - docs/polymorphdb-provider.md
 tags: []
 task_type: implement
+assignee: "codex"
+agent: "codex"
 ---
 
 # Objective
@@ -49,3 +51,8 @@ Implement and prove the native Zig provider boundary required by this app.
 - Native Zig provider contract tests and restart/recovery fixture pass.
 - Every required PolymorphDB operation has explicit pass/fail evidence.
 - HTTP handlers do not depend on provider implementation details.
+
+## Activity Log
+
+- 2026-08-10T21:03:35Z – codex – Moved to in_progress
+- 2026-08-10T21:05:47Z – codex – Self-review fallback authorized by project owner.
