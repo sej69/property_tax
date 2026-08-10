@@ -54,3 +54,12 @@ coordination checkout, with Spec Kitty task prompts, acceptance matrix, status
 artifacts, and validation/review evidence retained as the source of governance
 state. This is an execution-tooling deviation only; it does not change product
 scope or the `main` merge target.
+
+## 2026-08-10 â€” local-only continuation
+
+At the ownerâ€™s direction, the final acceptance pass does not pull new Anoka
+County data. The existing CSV supports ingestion, comparables, rankings, and
+the read-only API baseline. County geometry, exact tile-coordinate coverage,
+upstream seven-day tile population, and durable PolymorphDB publication remain
+explicitly unverified in the acceptance matrix until the operator supplies or
+authorizes the required local geometry/data inputs.

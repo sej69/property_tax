@@ -28,3 +28,11 @@ Known staged follow-ups:
 - The rankings endpoint currently returns a bounded sample for the UI contract;
   PolymorphDB-backed county-wide ranking materialization is the next production
   optimization.
+
+Acceptance status:
+
+- The Spec Kitty mission remains unmerged because the acceptance matrix records
+  geometry, tile-cache, durable-provider, and production-publication gaps
+  honestly as unverified or failing criteria.
+- No additional Anoka County data was downloaded during this run. The validated
+  local input remains the operator-provided CSV snapshot.
