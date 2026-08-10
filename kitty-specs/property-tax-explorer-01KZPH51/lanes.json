@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "mission_slug": "property-tax-explorer-01KZPH51",
+  "mission_id": "01KZPH51EJ9CBPM1GSHPHTS75M",
+  "mission_branch": "kitty/mission-property-tax-explorer-01KZPH51",
+  "target_branch": "kitty/mission-property-tax-explorer-01KZPH51",
+  "lanes": [
+    {
+      "lane_id": "lane-a",
+      "wp_ids": [
+        "WP01"
+      ],
+      "write_scope": [
+        "app/app.zig",
+        "build.zig",
+        "docs/ingestion.md",
+        "ingest/ingest.zig",
+        "tests/ingest_test.zig"
+      ],
+      "predicted_surfaces": [
+        "api"
+      ],
+      "depends_on_lanes": [],
+      "parallel_group": 0
+    },
+    {
+      "lane_id": "lane-b",
+      "wp_ids": [
+        "WP02"
+      ],
+      "write_scope": [
+        "docs/polymorphdb-provider.md",
+        "provider/provider.zig",
+        "tests/provider_test.zig"
+      ],
+      "predicted_surfaces": [],
+      "depends_on_lanes": [
+        "lane-a"
+      ],
+      "parallel_group": 1
+    },
+    {
+      "lane_id": "lane-c",
+      "wp_ids": [
+        "WP03"
+      ],
+      "write_scope": [
+        "docs/geometry-and-tiles.md",
+        "geometry/geometry.zig",
+        "tests/geometry_test.zig"
+      ],
+      "predicted_surfaces": [],
+      "depends_on_lanes": [
+        "lane-a"
+      ],
+      "parallel_group": 1
+    },
+    {
+      "lane_id": "lane-d",
+      "wp_ids": [
+        "WP04"
+      ],
+      "write_scope": [
+        "comparable/comparable.zig",
+        "docs/comparable-methodology.md",
+        "tests/comparable_test.zig"
+      ],
+      "predicted_surfaces": [],
+      "depends_on_lanes": [
+        "lane-a",
+        "lane-b"
+      ],
+      "parallel_group": 2
+    },
+    {
+      "lane_id": "lane-e",
+      "wp_ids": [
+        "WP05"
+      ],
+      "write_scope": [
+        "api/api.zig",
+        "docs/api.md",
+        "ranking/ranking.zig",
+        "tests/api_test.zig"
+      ],
+      "predicted_surfaces": [
+        "api"
+      ],
+      "depends_on_lanes": [
+        "lane-b",
+        "lane-c",
+        "lane-d"
+      ],
+      "parallel_group": 3
+    },
+    {
+      "lane_id": "lane-f",
+      "wp_ids": [
+        "WP06"
+      ],
+      "write_scope": [
+        "docs/tile-policy.md",
+        "tests/tiles_test.zig",
+        "tiles/tiles.zig"
+      ],
+      "predicted_surfaces": [],
+      "depends_on_lanes": [
+        "lane-c",
+        "lane-e"
+      ],
+      "parallel_group": 4
+    },
+    {
+      "lane_id": "lane-g",
+      "wp_ids": [
+        "WP07"
+      ],
+      "write_scope": [
+        "property-ui/app.js",
+        "property-ui/index.html",
+        "property-ui/styles.css",
+        "tests/property_ui_test.js"
+      ],
+      "predicted_surfaces": [],
+      "depends_on_lanes": [
+        "lane-e",
+        "lane-f"
+      ],
+      "parallel_group": 5
+    },
+    {
+      "lane_id": "lane-h",
+      "wp_ids": [
+        "WP08"
+      ],
+      "write_scope": [
+        "county-ui/map.css",
+        "county-ui/map.js",
+        "tests/county_map_test.js"
+      ],
+      "predicted_surfaces": [
+        "api"
+      ],
+      "depends_on_lanes": [
+        "lane-e",
+        "lane-f"
+      ],
+      "parallel_group": 5
+    },
+    {
+      "lane_id": "lane-i",
+      "wp_ids": [
+        "WP09"
+      ],
+      "write_scope": [
+        "deploy/Caddyfile",
+        "docs/deployment.md",
+        "operations/operations.zig",
+        "tests/lifecycle_test.zig"
+      ],
+      "predicted_surfaces": [
+        "api"
+      ],
+      "depends_on_lanes": [
+        "lane-a",
+        "lane-b",
+        "lane-c",
+        "lane-d",
+        "lane-e",
+        "lane-f",
+        "lane-g",
+        "lane-h"
+      ],
+      "parallel_group": 6
+    },
+    {
+      "lane_id": "lane-j",
+      "wp_ids": [
+        "WP10"
+      ],
+      "write_scope": [
+        "docs/licenses.md",
+        "docs/validation.md",
+        "validation/validation_test.zig"
+      ],
+      "predicted_surfaces": [
+        "api"
+      ],
+      "depends_on_lanes": [
+        "lane-e",
+        "lane-f",
+        "lane-g",
+        "lane-h",
+        "lane-i"
+      ],
+      "parallel_group": 7
+    },
+    {
+      "lane_id": "lane-k",
+      "wp_ids": [
+        "WP11"
+      ],
+      "write_scope": [
+        "docs/statistical-model.md",
+        "model-ui/model.js",
+        "model/model.zig",
+        "model/model_api.zig",
+        "tests/model_test.zig"
+      ],
+      "predicted_surfaces": [
+        "api"
+      ],
+      "depends_on_lanes": [
+        "lane-d",
+        "lane-e",
+        "lane-j"
+      ],
+      "parallel_group": 8
+    }
+  ],
+  "computed_at": "2026-08-10T20:10:45.332986+00:00",
+  "computed_from": "dependency_graph+ownership",
+  "planning_artifact_wps": []
+}
