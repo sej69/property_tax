@@ -1,0 +1,23 @@
+# Local source data and generated downloads
+*.csv
+*.zip
+anoka_pull_*/
+save/*.csv
+
+# Python and local tooling
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.pytest_cache/
+
+# Zig build outputs and caches
+zig-out/
+.zig-cache/
+
+# Local editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

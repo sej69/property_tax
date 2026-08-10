@@ -1,0 +1,538 @@
+{
+  "service": "https://gis.anokacountymn.gov/anoka_gis/rest/services/Parcels/MapServer/0",
+  "resolved_output_fields": {
+    "OBJECTID": "OBJECTID",
+    "Parcel_ID": "PIN",
+    "Address": "LOC_ADDR",
+    "City": "ACT_CITY",
+    "State": "LOC_STATE",
+    "ZIP": "LOC_ZIP",
+    "Use_Code": "USE_CODE",
+    "Use_Description": "USE_DESC",
+    "Property_Class": "PROP_CLASS",
+    "Structure_Type": "STRUC_TYPE",
+    "Homestead": "HOMESTEAD",
+    "Use_Program": "USE_PRGM",
+    "Tax_Year": "TAX_YEAR",
+    "Market_Value": "MKT_VALUE",
+    "Land_Value": "LAND_VALUE",
+    "Building_Value": "BLDG_VALUE",
+    "Classified_Value": "CLS_VALUE",
+    "Total_Tax": "TOTAL_TAX",
+    "Special_Assessments": "SPC_ASSESS",
+    "Living_Sq_Ft": "LIV_SQ_FT",
+    "Total_Sq_Ft": "TOT_SQ_FT",
+    "Bedrooms": "BEDROOMS",
+    "Bathrooms": "BATHROOMS",
+    "Stories": "STORIES",
+    "Basement": "BASEMENT",
+    "Heating_Cooling": "HEAT_COOL",
+    "Year_Built": "YEAR_BUILT",
+    "Acres": "ACRES",
+    "Deed_Acres": "DEED_ACRES",
+    "Neighborhood": "NBHD",
+    "Levy_Code": "LEVY_CODE",
+    "Sale_Date": "SALE_DATE",
+    "Sale_Price": "SALE_PRICE"
+  },
+  "unresolved_output_fields": [
+    "Effective_Year_Built"
+  ],
+  "available_fields": [
+    {
+      "name": "OBJECTID",
+      "alias": "OBJECTID",
+      "type": "esriFieldTypeOID"
+    },
+    {
+      "name": "PIN",
+      "alias": "PIN",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "SECTION",
+      "alias": "SECTION",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "TOWNSHIP",
+      "alias": "TOWNSHIP",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "RANGE",
+      "alias": "RANGE",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "QTR_QTR",
+      "alias": "QTR_QTR",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "SUFFIX",
+      "alias": "SUFFIX",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "LOC_NUMB",
+      "alias": "LOC_NUMB",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "LOC_PREFIX",
+      "alias": "LOC_PREFIX",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "LOC_NAME",
+      "alias": "LOC_NAME",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "LOC_TYPE",
+      "alias": "LOC_TYPE",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "LOC_SUFFIX",
+      "alias": "LOC_SUFFIX",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "LOC_UNIT",
+      "alias": "LOC_UNIT",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "LOC_ADDR",
+      "alias": "LOC_ADDR",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "ALT_ADDR",
+      "alias": "ALT_ADDR",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "LOC_CITY",
+      "alias": "LOC_CITY",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "LOC_STATE",
+      "alias": "LOC_STATE",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "LOC_ZIP",
+      "alias": "LOC_ZIP",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "ACT_CITY",
+      "alias": "ACT_CITY",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "ACRES",
+      "alias": "ACRES",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "CIC_NUMB",
+      "alias": "CIC_NUMB",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "Z_VALUE",
+      "alias": "Z_VALUE",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "COMMISH",
+      "alias": "COMMISH",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "WSD_DIST",
+      "alias": "WSD_DIST",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "SCL_DIST",
+      "alias": "SCL_DIST",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "ELEM_ATT",
+      "alias": "ELEM_ATT",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "MID_ATT",
+      "alias": "MID_ATT",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "HIGH_ATT",
+      "alias": "HIGH_ATT",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "RECORDED",
+      "alias": "RECORDED",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "DOC_NUMB",
+      "alias": "DOC_NUMB",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "PLAT",
+      "alias": "PLAT",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "PIN2",
+      "alias": "PIN2",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "POLL_LOC",
+      "alias": "POLL_LOC",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "HS_LINK",
+      "alias": "HS_LINK",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "TAX_LINK",
+      "alias": "TAX_LINK",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "PLAT_LINK",
+      "alias": "PLAT_LINK",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "Notes",
+      "alias": "Notes",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "AERIAL_LINK",
+      "alias": "AERIAL_LINK",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "GlobalID",
+      "alias": "GlobalID",
+      "type": "esriFieldTypeGlobalID"
+    },
+    {
+      "name": "Shape",
+      "alias": "Shape",
+      "type": "esriFieldTypeGeometry"
+    },
+    {
+      "name": "PIN_1",
+      "alias": "PIN_1",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "PIN2_1",
+      "alias": "PIN2_1",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "LOT",
+      "alias": "LOT",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "BLOCK",
+      "alias": "BLOCK",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "SUBDIV",
+      "alias": "SUBDIV",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "LOT_DIMS",
+      "alias": "LOT_DIMS",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "DEED_ACRES",
+      "alias": "DEED_ACRES",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "OWNER",
+      "alias": "OWNER",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "OWNERADDY",
+      "alias": "OWNERADDY",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "OWNERCITY",
+      "alias": "OWNERCITY",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "OWNERSTATE",
+      "alias": "OWNERSTATE",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "OWNERZIP",
+      "alias": "OWNERZIP",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "TAXPAYER",
+      "alias": "TAXPAYER",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "TPYRADDY",
+      "alias": "TPYRADDY",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "TPYRCITY",
+      "alias": "TPYRCITY",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "TPYRSTATE",
+      "alias": "TPYRSTATE",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "TPYRZIP",
+      "alias": "TPYRZIP",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "LEVY_CODE",
+      "alias": "LEVY_CODE",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "USE_CODE",
+      "alias": "USE_CODE",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "USE_DESC",
+      "alias": "USE_DESC",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "PROP_CLASS",
+      "alias": "PROP_CLASS",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "MKT_VALUE",
+      "alias": "MKT_VALUE",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "LAND_VALUE",
+      "alias": "LAND_VALUE",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "BLDG_VALUE",
+      "alias": "BLDG_VALUE",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "CLS_VALUE",
+      "alias": "CLS_VALUE",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "SALE_DATE",
+      "alias": "SALE_DATE",
+      "type": "esriFieldTypeDate"
+    },
+    {
+      "name": "SALE_PRICE",
+      "alias": "SALE_PRICE",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "HOMESTEAD",
+      "alias": "HOMESTEAD",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "TAX_YEAR",
+      "alias": "TAX_YEAR",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "TAX_CAPAC",
+      "alias": "TAX_CAPAC",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "TOTAL_TAX",
+      "alias": "TOTAL_TAX",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "SPC_ASSESS",
+      "alias": "SPC_ASSESS",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "NBHD",
+      "alias": "NBHD",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "USE_PRGM",
+      "alias": "USE_PRGM",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "STRUC_TYPE",
+      "alias": "STRUC_TYPE",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "YEAR_BUILT",
+      "alias": "YEAR_BUILT",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "EFF_YR_BLT",
+      "alias": "EFF_YR_BLT",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "LIV_SQ_FT",
+      "alias": "LIV_SQ_FT",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "TOT_SQ_FT",
+      "alias": "TOT_SQ_FT",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "PAD_COUNT",
+      "alias": "PAD_COUNT",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "BEDROOMS",
+      "alias": "BEDROOMS",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "BATHROOMS",
+      "alias": "BATHROOMS",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "STORIES",
+      "alias": "STORIES",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "BASEMENT",
+      "alias": "BASEMENT",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "HEAT_COOL",
+      "alias": "HEAT_COOL",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "NEW_CONST",
+      "alias": "NEW_CONST",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "L_NUMB",
+      "alias": "L_NUMB",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "L_PREDIR",
+      "alias": "L_PREDIR",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "L_NAME",
+      "alias": "L_NAME",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "L_TYPE",
+      "alias": "L_TYPE",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "L_POSTDIR",
+      "alias": "L_POSTDIR",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "L_UNIT",
+      "alias": "L_UNIT",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "L_CITY",
+      "alias": "L_CITY",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "L_ZIP",
+      "alias": "L_ZIP",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "Shape.STArea()",
+      "alias": "Shape.STArea()",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "Shape.STLength()",
+      "alias": "Shape.STLength()",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "LEGAL_DESC",
+      "alias": "LEGAL_DESC",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "name": "C_CLS_VALUE",
+      "alias": "C_CLS_VALUE",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "name": "L_UNIT_TYPE",
+      "alias": "L_UNIT_TYPE",
+      "type": "esriFieldTypeString"
+    }
+  ]
+}
