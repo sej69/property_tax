@@ -30,6 +30,8 @@ owned_files:
 - docs/geometry-and-tiles.md
 tags: []
 task_type: implement
+assignee: "codex"
+agent: "codex"
 ---
 
 # Objective
@@ -51,3 +53,9 @@ centroids, and tile-coordinate coverage.
 - Known-PIN, leading-zero, missing-geometry, and unknown-PIN fixtures pass.
 - Geometry is versioned by dataset and parcel ID.
 - No property absent from imported CSVs is queried or displayed.
+
+## Activity Log
+
+- 2026-08-10T21:06:16Z – codex – Moved to in_progress
+- 2026-08-10T21:06:20Z – codex – Implementation validated: geometry coverage seam and tile scope; zig build test; zig build.
+- 2026-08-10T21:06:23Z – codex – Self-review fallback authorized by project owner.

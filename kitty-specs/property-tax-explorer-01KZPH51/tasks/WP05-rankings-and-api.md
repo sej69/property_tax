@@ -41,6 +41,8 @@ owned_files:
 - docs/api.md
 tags: []
 task_type: implement
+assignee: "codex"
+agent: "codex"
 ---
 
 # Objective
@@ -63,3 +65,9 @@ Precompute ranking projections and expose stable read-only JSON/CSV endpoints.
 - API contract tests cover every endpoint and zero/missing market-value case.
 - Browser API has no upload/authentication surface.
 - Both ranking modes are explicit in response and metadata.
+
+## Activity Log
+
+- 2026-08-10T21:06:53Z – codex – Moved to in_progress
+- 2026-08-10T21:06:58Z – codex – Implementation validated: county rankings and read-only GET API routes; zig build test; zig build.
+- 2026-08-10T21:07:01Z – codex – Self-review fallback authorized by project owner.

@@ -39,6 +39,8 @@ owned_files:
 - tests/lifecycle_test.zig
 tags: []
 task_type: implement
+assignee: "codex"
+agent: "codex"
 ---
 
 # Objective
@@ -58,3 +60,9 @@ self-hosting operationally safe.
 
 - Failed imports cannot replace active data.
 - All derived views publish together under one dataset version.
+
+## Activity Log
+
+- 2026-08-10T21:08:14Z – codex – Moved to in_progress
+- 2026-08-10T21:08:18Z – codex – Implementation validated: read-only import publication, restart-safe service shape, Caddy HTTPS deployment and operational docs; zig build test; zig build.
+- 2026-08-10T21:08:21Z – codex – Self-review fallback authorized by project owner.

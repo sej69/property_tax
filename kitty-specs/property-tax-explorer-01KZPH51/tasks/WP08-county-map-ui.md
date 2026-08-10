@@ -32,6 +32,8 @@ owned_files:
 - tests/county_map_test.js
 tags: []
 task_type: implement
+assignee: "codex"
+agent: "codex"
 ---
 
 # Objective
@@ -51,3 +53,9 @@ Build the MapLibre county explorer with tax-year and ranking-mode controls.
 
 - Legend names the active statistic.
 - Full county data is not loaded into one browser response.
+
+## Activity Log
+
+- 2026-08-10T21:07:55Z – codex – Moved to in_progress
+- 2026-08-10T21:08:00Z – codex – Implementation validated: county-wide MapLibre explorer shell, year selector and ranked anomaly legend/list; zig build test; zig build.
+- 2026-08-10T21:08:03Z – codex – Self-review fallback authorized by project owner.
