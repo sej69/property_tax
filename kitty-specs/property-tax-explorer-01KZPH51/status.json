@@ -1,7 +1,7 @@
 {
-  "event_count": 19,
-  "last_event_id": "01KZPQYQ0A2YQGB1EJT5F305Z7",
-  "materialized_at": "2026-08-10T21:06:14.666299+00:00",
+  "event_count": 20,
+  "last_event_id": "01KZPQYQXT3PM5RKAM0AT3VTD1",
+  "materialized_at": "2026-08-10T21:06:15.610403+00:00",
   "mission_number": "",
   "mission_slug": "property-tax-explorer-01KZPH51",
   "mission_type": "software-dev",
@@ -9,10 +9,10 @@
     "approved": 2,
     "blocked": 0,
     "canceled": 0,
-    "claimed": 1,
+    "claimed": 0,
     "done": 0,
     "for_review": 0,
-    "in_progress": 0,
+    "in_progress": 1,
     "in_review": 0,
     "planned": 8
   },
@@ -34,9 +34,9 @@
     "WP03": {
       "actor": "codex",
       "force_count": 0,
-      "lane": "claimed",
-      "last_event_id": "01KZPQYQ0A2YQGB1EJT5F305Z7",
-      "last_transition_at": "2026-08-10T21:06:14.666299+00:00"
+      "lane": "in_progress",
+      "last_event_id": "01KZPQYQXT3PM5RKAM0AT3VTD1",
+      "last_transition_at": "2026-08-10T21:06:15.610403+00:00"
     },
     "WP04": {
       "actor": "finalize-tasks",
