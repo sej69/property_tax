@@ -71,3 +71,4 @@ Precompute ranking projections and expose stable read-only JSON/CSV endpoints.
 - 2026-08-10T21:06:53Z – codex – Moved to in_progress
 - 2026-08-10T21:06:58Z – codex – Implementation validated: county rankings and read-only GET API routes; zig build test; zig build.
 - 2026-08-10T21:07:01Z – codex – Self-review fallback authorized by project owner.
+- 2026-08-10T21:29:01Z – codex – Done override: Owner-authorized non-fast-forward merge delivered the mission branch to main; expected lane branches were unavailable on Windows and acceptance gaps remain documented.

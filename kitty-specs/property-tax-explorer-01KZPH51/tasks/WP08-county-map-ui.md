@@ -59,3 +59,4 @@ Build the MapLibre county explorer with tax-year and ranking-mode controls.
 - 2026-08-10T21:07:55Z – codex – Moved to in_progress
 - 2026-08-10T21:08:00Z – codex – Implementation validated: county-wide MapLibre explorer shell, year selector and ranked anomaly legend/list; zig build test; zig build.
 - 2026-08-10T21:08:03Z – codex – Self-review fallback authorized by project owner.
+- 2026-08-10T21:29:09Z – codex – Done override: Owner-authorized non-fast-forward merge delivered the mission branch to main; expected lane branches were unavailable on Windows and acceptance gaps remain documented.

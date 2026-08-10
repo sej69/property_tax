@@ -64,3 +64,4 @@ comparables.
 - 2026-08-10T21:08:50Z – codex – Moved to in_progress
 - 2026-08-10T21:08:55Z – codex – Phase-two statistical model slice implemented and documented separately from direct comparable results; zig build test; zig build.
 - 2026-08-10T21:08:58Z – codex – Self-review fallback authorized by project owner.
+- 2026-08-10T21:29:17Z – codex – Done override: Owner-authorized non-fast-forward merge delivered the mission branch to main; expected lane branches were unavailable on Windows and acceptance gaps remain documented.

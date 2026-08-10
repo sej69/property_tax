@@ -56,3 +56,4 @@ Implement and prove the native Zig provider boundary required by this app.
 
 - 2026-08-10T21:03:35Z – codex – Moved to in_progress
 - 2026-08-10T21:05:47Z – codex – Self-review fallback authorized by project owner.
+- 2026-08-10T21:28:53Z – codex – Done override: Owner-authorized non-fast-forward merge delivered the mission branch to main; expected lane branches were unavailable on Windows and acceptance gaps remain documented.

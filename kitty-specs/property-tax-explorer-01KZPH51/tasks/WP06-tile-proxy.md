@@ -57,3 +57,4 @@ CSV-derived coverage gate.
 - 2026-08-10T21:07:15Z – codex – Moved to in_progress
 - 2026-08-10T21:07:19Z – codex – Implementation validated: seven-day tile policy, CSV-backed coverage gate, OSM attribution and read-only tile route; zig build test; zig build.
 - 2026-08-10T21:07:22Z – codex – Self-review fallback authorized by project owner.
+- 2026-08-10T21:29:04Z – codex – Done override: Owner-authorized non-fast-forward merge delivered the mission branch to main; expected lane branches were unavailable on Windows and acceptance gaps remain documented.

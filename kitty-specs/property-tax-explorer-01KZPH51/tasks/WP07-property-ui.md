@@ -62,3 +62,4 @@ Build the desktop-first property journey with accessible tables and charts.
 - 2026-08-10T21:07:33Z – codex – Moved to in_progress
 - 2026-08-10T21:07:38Z – codex – Implementation validated: property search/detail UI, year cycling, comparable display and user-facing method labels; zig build test; zig build.
 - 2026-08-10T21:07:40Z – codex – Self-review fallback authorized by project owner.
+- 2026-08-10T21:29:06Z – codex – Done override: Owner-authorized non-fast-forward merge delivered the mission branch to main; expected lane branches were unavailable on Windows and acceptance gaps remain documented.

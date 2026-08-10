@@ -59,3 +59,4 @@ centroids, and tile-coordinate coverage.
 - 2026-08-10T21:06:16Z – codex – Moved to in_progress
 - 2026-08-10T21:06:20Z – codex – Implementation validated: geometry coverage seam and tile scope; zig build test; zig build.
 - 2026-08-10T21:06:23Z – codex – Self-review fallback authorized by project owner.
+- 2026-08-10T21:28:55Z – codex – Done override: Owner-authorized non-fast-forward merge delivered the mission branch to main; expected lane branches were unavailable on Windows and acceptance gaps remain documented.

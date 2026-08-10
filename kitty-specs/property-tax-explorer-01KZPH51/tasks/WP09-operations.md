@@ -66,3 +66,4 @@ self-hosting operationally safe.
 - 2026-08-10T21:08:14Z – codex – Moved to in_progress
 - 2026-08-10T21:08:18Z – codex – Implementation validated: read-only import publication, restart-safe service shape, Caddy HTTPS deployment and operational docs; zig build test; zig build.
 - 2026-08-10T21:08:21Z – codex – Self-review fallback authorized by project owner.
+- 2026-08-10T21:29:12Z – codex – Done override: Owner-authorized non-fast-forward merge delivered the mission branch to main; expected lane branches were unavailable on Windows and acceptance gaps remain documented.

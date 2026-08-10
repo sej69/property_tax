@@ -66,3 +66,4 @@ public-service safety.
 - 2026-08-10T21:08:32Z – codex – Moved to in_progress
 - 2026-08-10T21:08:37Z – codex – Validation completed: Zig tests/build, full CSV import check, HTTP smoke tests and documented accessibility/security checks; zig build test --summary all; zig build.
 - 2026-08-10T21:08:39Z – codex – Self-review fallback authorized by project owner.
+- 2026-08-10T21:29:15Z – codex – Done override: Owner-authorized non-fast-forward merge delivered the mission branch to main; expected lane branches were unavailable on Windows and acceptance gaps remain documented.

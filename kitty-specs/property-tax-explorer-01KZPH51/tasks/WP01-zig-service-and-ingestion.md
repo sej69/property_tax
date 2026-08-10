@@ -72,3 +72,4 @@ Python remains an operator download utility, not an application runtime.
 - 2026-08-10T21:02:14Z – codex – Implemented and validated: zig build test; zig build; real CSV import; HTTP smoke tests.
 - 2026-08-10T21:02:23Z – codex:gpt-5:codex:reviewer – shell_pid=39804 – Started review via action command
 - 2026-08-10T21:03:11Z – codex – shell_pid=39804 – Self-review fallback authorized by project owner; reviewed WP-owned surfaces and validation evidence.
+- 2026-08-10T21:28:44Z – codex – shell_pid=39804 – Done override: Owner-authorized non-fast-forward merge delivered the mission branch to main; expected lane branches were unavailable on Windows and acceptance gaps remain documented.
