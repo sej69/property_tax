@@ -1,0 +1,436 @@
+schema_version: 1
+mission_id: 01KZPH51EJ9CBPM1GSHPHTS75M
+mission_slug: property-tax-explorer-01KZPH51
+mission_number:
+friendly_name: property tax explorer
+mission_type: software-dev
+target_branch: main
+created_at: '2026-08-10T21:30:42.534739+00:00'
+created_by:
+  kind: human
+  id: cli
+  display: spec-kitty retrospect
+provenance:
+  kind: explicit_create
+  invoked_at: '2026-08-10T21:30:42.534739+00:00'
+  policy_resolved_from:
+    enabled: <default>
+    timing: <default>
+    failure_policy: <default>
+    write_record: <default>
+    generate_proposals: <default>
+    apply_proposals: <default>
+    permissions.write_record: <default>
+    permissions.inspect_mission_artifacts: <default>
+    permissions.propose_glossary_changes: <default>
+    permissions.propose_drg_changes: <default>
+    permissions.propose_doctrine_changes: <default>
+    permissions.apply_low_risk_changes: <default>
+    permissions.apply_structural_changes: <default>
+    precedence: <default>
+    generator: <default>
+  command: spec-kitty retrospect create
+policy_source:
+  enabled: <default>
+  timing: <default>
+  failure_policy: <default>
+  write_record: <default>
+  generate_proposals: <default>
+  apply_proposals: <default>
+  permissions.write_record: <default>
+  permissions.inspect_mission_artifacts: <default>
+  permissions.propose_glossary_changes: <default>
+  permissions.propose_drg_changes: <default>
+  permissions.propose_doctrine_changes: <default>
+  permissions.apply_low_risk_changes: <default>
+  permissions.apply_structural_changes: <default>
+  precedence: <default>
+  generator: <default>
+findings_status: has_findings
+helped:
+- id: h-001
+  category: implementation
+  summary: WP01 completed without rejection cycles
+  evidence_refs:
+  - e-016
+- id: h-002
+  category: implementation
+  summary: WP02 completed without rejection cycles
+  evidence_refs:
+  - e-016
+- id: h-003
+  category: implementation
+  summary: WP03 completed without rejection cycles
+  evidence_refs:
+  - e-016
+- id: h-004
+  category: implementation
+  summary: WP04 completed without rejection cycles
+  evidence_refs:
+  - e-016
+- id: h-005
+  category: implementation
+  summary: WP05 completed without rejection cycles
+  evidence_refs:
+  - e-016
+- id: h-006
+  category: implementation
+  summary: WP06 completed without rejection cycles
+  evidence_refs:
+  - e-016
+- id: h-007
+  category: implementation
+  summary: WP07 completed without rejection cycles
+  evidence_refs:
+  - e-016
+- id: h-008
+  category: implementation
+  summary: WP08 completed without rejection cycles
+  evidence_refs:
+  - e-016
+- id: h-009
+  category: implementation
+  summary: WP09 completed without rejection cycles
+  evidence_refs:
+  - e-016
+- id: h-010
+  category: implementation
+  summary: WP10 completed without rejection cycles
+  evidence_refs:
+  - e-016
+- id: h-011
+  category: implementation
+  summary: WP11 completed without rejection cycles
+  evidence_refs:
+  - e-016
+not_helpful:
+- id: n-023
+  category: doc
+  summary: analysis-report.md present with findings
+  evidence_refs:
+  - e-039
+  details: An analysis-report.md artifact is present for this mission. Review its findings to understand documented 
+    issues and decisions.
+- id: n-001
+  category: process
+  summary: WP01 required 1 --force override(s) during workflow
+  evidence_refs:
+  - e-017
+  details: WP WP01 required 1 operator-driven --force lane transition(s). Force overrides typically indicate the runtime
+    guard failed or the operator routed around it; investigate the underlying cause.
+- id: n-012
+  category: process
+  summary: WP01 used self-review fallback instead of independent review
+  evidence_refs:
+  - e-028
+  details: 'WP WP01 recorded 1 ReviewerSelfApproval event(s): codex self-reviewed after intended reviewer codex:gpt-5:codex:reviewer
+    failed (Windows coordination-worktree no-follow write restriction prevented review bookkeeping; manual diff, zig build
+    test, zig build, full CSV import, and HTTP smoke tests passed.). Treat this as a review-independence gap.'
+- id: n-002
+  category: process
+  summary: WP02 required 1 --force override(s) during workflow
+  evidence_refs:
+  - e-018
+  details: WP WP02 required 1 operator-driven --force lane transition(s). Force overrides typically indicate the runtime
+    guard failed or the operator routed around it; investigate the underlying cause.
+- id: n-013
+  category: process
+  summary: WP02 used self-review fallback instead of independent review
+  evidence_refs:
+  - e-029
+  details: 'WP WP02 recorded 1 ReviewerSelfApproval event(s): codex self-reviewed after intended reviewer codex:gpt-5:codex:reviewer
+    failed (Windows review bookkeeping no-follow restriction; manual WP-owned diff review and zig build/test validation passed.).
+    Treat this as a review-independence gap.'
+- id: n-003
+  category: process
+  summary: WP03 required 1 --force override(s) during workflow
+  evidence_refs:
+  - e-019
+  details: WP WP03 required 1 operator-driven --force lane transition(s). Force overrides typically indicate the runtime
+    guard failed or the operator routed around it; investigate the underlying cause.
+- id: n-014
+  category: process
+  summary: WP03 used self-review fallback instead of independent review
+  evidence_refs:
+  - e-030
+  details: 'WP WP03 recorded 1 ReviewerSelfApproval event(s): codex self-reviewed after intended reviewer codex:gpt-5:codex:reviewer
+    failed (Windows review bookkeeping no-follow restriction; manual WP-owned diff review and zig build/test validation passed.).
+    Treat this as a review-independence gap.'
+- id: n-004
+  category: process
+  summary: WP04 required 1 --force override(s) during workflow
+  evidence_refs:
+  - e-020
+  details: WP WP04 required 1 operator-driven --force lane transition(s). Force overrides typically indicate the runtime
+    guard failed or the operator routed around it; investigate the underlying cause.
+- id: n-015
+  category: process
+  summary: WP04 used self-review fallback instead of independent review
+  evidence_refs:
+  - e-031
+  details: 'WP WP04 recorded 1 ReviewerSelfApproval event(s): codex self-reviewed after intended reviewer codex:gpt-5:codex:reviewer
+    failed (Windows review bookkeeping no-follow restriction; manual WP-owned diff review and zig build/test validation passed.).
+    Treat this as a review-independence gap.'
+- id: n-005
+  category: process
+  summary: WP05 required 1 --force override(s) during workflow
+  evidence_refs:
+  - e-021
+  details: WP WP05 required 1 operator-driven --force lane transition(s). Force overrides typically indicate the runtime
+    guard failed or the operator routed around it; investigate the underlying cause.
+- id: n-016
+  category: process
+  summary: WP05 used self-review fallback instead of independent review
+  evidence_refs:
+  - e-032
+  details: 'WP WP05 recorded 1 ReviewerSelfApproval event(s): codex self-reviewed after intended reviewer codex:gpt-5:codex:reviewer
+    failed (Windows review bookkeeping no-follow restriction; manual WP-owned diff review and zig build/test validation passed.).
+    Treat this as a review-independence gap.'
+- id: n-006
+  category: process
+  summary: WP06 required 1 --force override(s) during workflow
+  evidence_refs:
+  - e-022
+  details: WP WP06 required 1 operator-driven --force lane transition(s). Force overrides typically indicate the runtime
+    guard failed or the operator routed around it; investigate the underlying cause.
+- id: n-017
+  category: process
+  summary: WP06 used self-review fallback instead of independent review
+  evidence_refs:
+  - e-033
+  details: 'WP WP06 recorded 1 ReviewerSelfApproval event(s): codex self-reviewed after intended reviewer codex:gpt-5:codex:reviewer
+    failed (Windows review bookkeeping no-follow restriction; manual WP-owned diff review and zig build/test validation passed.).
+    Treat this as a review-independence gap.'
+- id: n-007
+  category: process
+  summary: WP07 required 1 --force override(s) during workflow
+  evidence_refs:
+  - e-023
+  details: WP WP07 required 1 operator-driven --force lane transition(s). Force overrides typically indicate the runtime
+    guard failed or the operator routed around it; investigate the underlying cause.
+- id: n-018
+  category: process
+  summary: WP07 used self-review fallback instead of independent review
+  evidence_refs:
+  - e-034
+  details: 'WP WP07 recorded 1 ReviewerSelfApproval event(s): codex self-reviewed after intended reviewer codex:gpt-5:codex:reviewer
+    failed (Windows review bookkeeping no-follow restriction; manual WP-owned diff review and zig build/test validation passed.).
+    Treat this as a review-independence gap.'
+- id: n-008
+  category: process
+  summary: WP08 required 1 --force override(s) during workflow
+  evidence_refs:
+  - e-024
+  details: WP WP08 required 1 operator-driven --force lane transition(s). Force overrides typically indicate the runtime
+    guard failed or the operator routed around it; investigate the underlying cause.
+- id: n-019
+  category: process
+  summary: WP08 used self-review fallback instead of independent review
+  evidence_refs:
+  - e-035
+  details: 'WP WP08 recorded 1 ReviewerSelfApproval event(s): codex self-reviewed after intended reviewer codex:gpt-5:codex:reviewer
+    failed (Windows review bookkeeping no-follow restriction; manual WP-owned diff review and zig build/test validation passed.).
+    Treat this as a review-independence gap.'
+- id: n-009
+  category: process
+  summary: WP09 required 1 --force override(s) during workflow
+  evidence_refs:
+  - e-025
+  details: WP WP09 required 1 operator-driven --force lane transition(s). Force overrides typically indicate the runtime
+    guard failed or the operator routed around it; investigate the underlying cause.
+- id: n-020
+  category: process
+  summary: WP09 used self-review fallback instead of independent review
+  evidence_refs:
+  - e-036
+  details: 'WP WP09 recorded 1 ReviewerSelfApproval event(s): codex self-reviewed after intended reviewer codex:gpt-5:codex:reviewer
+    failed (Windows review bookkeeping no-follow restriction; manual WP-owned diff review and zig build/test validation passed.).
+    Treat this as a review-independence gap.'
+- id: n-010
+  category: process
+  summary: WP10 required 1 --force override(s) during workflow
+  evidence_refs:
+  - e-026
+  details: WP WP10 required 1 operator-driven --force lane transition(s). Force overrides typically indicate the runtime
+    guard failed or the operator routed around it; investigate the underlying cause.
+- id: n-021
+  category: process
+  summary: WP10 used self-review fallback instead of independent review
+  evidence_refs:
+  - e-037
+  details: 'WP WP10 recorded 1 ReviewerSelfApproval event(s): codex self-reviewed after intended reviewer codex:gpt-5:codex:reviewer
+    failed (Windows review bookkeeping no-follow restriction; manual WP-owned diff review and zig build/test validation passed.).
+    Treat this as a review-independence gap.'
+- id: n-011
+  category: process
+  summary: WP11 required 1 --force override(s) during workflow
+  evidence_refs:
+  - e-027
+  details: WP WP11 required 1 operator-driven --force lane transition(s). Force overrides typically indicate the runtime
+    guard failed or the operator routed around it; investigate the underlying cause.
+- id: n-022
+  category: process
+  summary: WP11 used self-review fallback instead of independent review
+  evidence_refs:
+  - e-038
+  details: 'WP WP11 recorded 1 ReviewerSelfApproval event(s): codex self-reviewed after intended reviewer codex:gpt-5:codex:reviewer
+    failed (Windows review bookkeeping no-follow restriction; manual WP-owned diff review and zig build/test validation passed.).
+    Treat this as a review-independence gap.'
+gaps:
+- id: g-002
+  category: doc
+  summary: data-model.md absent
+  evidence_refs:
+  - e-002
+  details: spec.md declares domain entities but data-model.md is missing. A data model document clarifies domain entity 
+    relationships.
+- id: g-001
+  category: doc
+  summary: research.md absent
+  evidence_refs:
+  - e-002
+  details: spec.md is present but research.md is missing. Research artifacts help future maintainers understand design 
+    decisions.
+proposals: []
+evidence_refs:
+- id: e-001
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/meta.json
+- id: e-002
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/spec.md
+- id: e-003
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/plan.md
+- id: e-004
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/tasks.md
+- id: e-005
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/tasks/WP01-zig-service-and-ingestion.md
+- id: e-006
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/tasks/WP02-polymorphdb-provider.md
+- id: e-007
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/tasks/WP03-geometry-and-coverage.md
+- id: e-008
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/tasks/WP04-comparable-engine.md
+- id: e-009
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/tasks/WP05-rankings-and-api.md
+- id: e-010
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/tasks/WP06-tile-proxy.md
+- id: e-011
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/tasks/WP07-property-ui.md
+- id: e-012
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/tasks/WP08-county-map-ui.md
+- id: e-013
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/tasks/WP09-operations.md
+- id: e-014
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/tasks/WP10-validation.md
+- id: e-015
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/tasks/WP11-statistical-model.md
+- id: e-016
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+- id: e-017
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPQS359WGR4WZV1XEQQQYJ2
+- id: e-018
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPQXVQZFF2M1E492GX7K8M8
+- id: e-019
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPQYYXR5Z6Q2FKX0YXZAJBA
+- id: e-020
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPQZH5W8MR9NJFNP6Z25NAG
+- id: e-021
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPR03RRN1QYYFFT8Q1S1D1P
+- id: e-022
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPR0R6568PRXASJ2BXXV702
+- id: e-023
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPR1AJHJHMAMXY1SCYY5BBC
+- id: e-024
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPR207XXW9017NM09FSJQJA
+- id: e-025
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPR2J4VE1VT2YC20B8ZR78F
+- id: e-026
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPR3420RP7V0CG5HDTJ08MZ
+- id: e-027
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPR3P23AKXBZ56TTC1J134Q
+- id: e-028
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPQS3XN09EYXN3FDX2TZ308
+- id: e-029
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPQXWGC7NAX6M1B5Q6QQH69
+- id: e-030
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPQYZMN5G5Q1QAB9M7P7GH5
+- id: e-031
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPQZHWKJ9HMXF4YT54WGVR8
+- id: e-032
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPR04FFPA9AEVRD785JJCQ0
+- id: e-033
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPR0RX3RAS14TT5WVKR8V1E
+- id: e-034
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPR1B90QVAE9RKD28ZXYN0G
+- id: e-035
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPR20Z02D9FNWVCEE7RTV3Z
+- id: e-036
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPR2JVVY3N7R3YM0W7DA6Y0
+- id: e-037
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPR34S8NH51F8DTTJ5PJERT
+- id: e-038
+  kind: event_range
+  path: kitty-specs/property-tax-explorer-01KZPH51/status.events.jsonl
+  range: 01KZPR3PS9FGKJGAF485FHD1Y3
+- id: e-039
+  kind: file
+  path: kitty-specs/property-tax-explorer-01KZPH51/analysis-report.md
+generator_version: '1.0'
+provenance_history: []
