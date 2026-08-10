@@ -3,7 +3,7 @@
   "mission_slug": "property-tax-explorer-01KZPH51",
   "mission_id": "01KZPH51EJ9CBPM1GSHPHTS75M",
   "mission_branch": "kitty/mission-property-tax-explorer-01KZPH51",
-  "target_branch": "main",
+  "target_branch": "kitty/mission-property-tax-explorer-01KZPH51",
   "lanes": [
     {
       "lane_id": "lane-a",
@@ -218,7 +218,7 @@
       "parallel_group": 8
     }
   ],
-  "computed_at": "2026-08-10T20:16:58.549259+00:00",
+  "computed_at": "2026-08-10T20:21:48.821374+00:00",
   "computed_from": "dependency_graph+ownership",
   "planning_artifact_wps": []
 }
