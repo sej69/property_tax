@@ -35,6 +35,8 @@ owned_files:
 - docs/comparable-methodology.md
 tags: []
 task_type: implement
+assignee: "codex"
+agent: "codex"
 ---
 
 # Objective
@@ -59,3 +61,9 @@ and confidence.
 - Tax outcomes never enter similarity.
 - Peer results are reproducible from dataset/year/definition versions.
 - The result never says “overtaxed.”
+
+## Activity Log
+
+- 2026-08-10T21:06:34Z – codex – Moved to in_progress
+- 2026-08-10T21:06:39Z – codex – Implementation validated: hierarchical hard-match/tolerance/weighted comparable engine and median/confidence outputs; zig build test; zig build.
+- 2026-08-10T21:06:42Z – codex – Self-review fallback authorized by project owner.

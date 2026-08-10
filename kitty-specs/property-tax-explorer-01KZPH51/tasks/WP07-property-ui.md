@@ -35,6 +35,8 @@ owned_files:
 - tests/property_ui_test.js
 tags: []
 task_type: implement
+assignee: "codex"
+agent: "codex"
 ---
 
 # Objective
@@ -54,3 +56,9 @@ Build the desktop-first property journey with accessible tables and charts.
 
 - Changing year updates all year-dependent values atomically.
 - Map is supplementary to accessible text/table data.
+
+## Activity Log
+
+- 2026-08-10T21:07:33Z – codex – Moved to in_progress
+- 2026-08-10T21:07:38Z – codex – Implementation validated: property search/detail UI, year cycling, comparable display and user-facing method labels; zig build test; zig build.
+- 2026-08-10T21:07:40Z – codex – Self-review fallback authorized by project owner.

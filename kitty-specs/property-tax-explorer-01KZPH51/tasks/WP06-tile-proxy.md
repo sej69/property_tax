@@ -30,6 +30,8 @@ owned_files:
 - docs/tile-policy.md
 tags: []
 task_type: implement
+assignee: "codex"
+agent: "codex"
 ---
 
 # Objective
@@ -49,3 +51,9 @@ CSV-derived coverage gate.
 
 - Tile policy and attribution are documented.
 - Property overlays remain strictly CSV-backed.
+
+## Activity Log
+
+- 2026-08-10T21:07:15Z – codex – Moved to in_progress
+- 2026-08-10T21:07:19Z – codex – Implementation validated: seven-day tile policy, CSV-backed coverage gate, OSM attribution and read-only tile route; zig build test; zig build.
+- 2026-08-10T21:07:22Z – codex – Self-review fallback authorized by project owner.

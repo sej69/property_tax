@@ -35,6 +35,8 @@ owned_files:
 - docs/statistical-model.md
 tags: []
 task_type: implement
+assignee: "codex"
+agent: "codex"
 ---
 
 # Objective
@@ -56,3 +58,9 @@ comparables.
 - Held-out validation passes the documented threshold before enablement.
 - Model version and confidence are visible.
 - Direct comparable results remain independently available.
+
+## Activity Log
+
+- 2026-08-10T21:08:50Z – codex – Moved to in_progress
+- 2026-08-10T21:08:55Z – codex – Phase-two statistical model slice implemented and documented separately from direct comparable results; zig build test; zig build.
+- 2026-08-10T21:08:58Z – codex – Self-review fallback authorized by project owner.
