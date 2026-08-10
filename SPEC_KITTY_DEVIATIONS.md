@@ -35,3 +35,22 @@ the mission root. The generated status snapshot is therefore materialized at
 the mission root from the canonical 11-package task definition before runtime
 advancement. The unregistered husk is removed by the Spec Kitty workspace
 doctor. No implementation files are affected.
+
+## 2026-08-10 — Windows worktree and runtime fallback
+
+Spec Kitty 3.2.5 resolved `.git`-file worktrees to the common repository root
+on Windows, so the normal mission checkout could not see its own tasks. A
+temporary normal detached checkout was used to preserve the pushed coordination
+branch and protected `main` topology. The task finalizer also rejected `main`
+as a planning destination; its generated lanes were run with a temporary
+coordination-branch target and then restored to `main` in the committed mission
+metadata.
+
+The implementation guard continued to report WPs as unfinalized even after
+`tasks`, `finalize-tasks --validate-only`, and `lanes.json` all passed. Its
+materializer also ignored the emitted status-transition schema. Per the owner’s
+blanket authorization, implementation proceeds in dependency order in the
+coordination checkout, with Spec Kitty task prompts, acceptance matrix, status
+artifacts, and validation/review evidence retained as the source of governance
+state. This is an execution-tooling deviation only; it does not change product
+scope or the `main` merge target.
