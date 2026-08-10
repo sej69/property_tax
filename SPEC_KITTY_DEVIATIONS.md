@@ -63,3 +63,12 @@ the read-only API baseline. County geometry, exact tile-coordinate coverage,
 upstream seven-day tile population, and durable PolymorphDB publication remain
 explicitly unverified in the acceptance matrix until the operator supplies or
 authorizes the required local geometry/data inputs.
+
+## 2026-08-10 â€” owner-authorized main merge exception
+
+The owner explicitly authorized applying the mission branch to `main` despite
+the acceptance matrix remaining `fail`. This bypasses the normal Spec Kitty
+acceptance prerequisite by explicit project-owner direction; it does not mark
+the mission accepted and does not hide the outstanding implementation gaps.
+The merge is performed as a normal non-rewriting merge so the baseline and
+follow-up evidence remain visible in repository history.

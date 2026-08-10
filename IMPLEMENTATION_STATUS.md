@@ -36,3 +36,6 @@ Acceptance status:
   honestly as unverified or failing criteria.
 - No additional Anoka County data was downloaded during this run. The validated
   local input remains the operator-provided CSV snapshot.
+- The owner authorized publishing this baseline to `main` despite the failed
+  acceptance matrix; this is a documented delivery exception, not a claim that
+  the staged production follow-ups are complete.
