@@ -35,3 +35,40 @@ the mission root. The generated status snapshot is therefore materialized at
 the mission root from the canonical 11-package task definition before runtime
 advancement. The unregistered husk is removed by the Spec Kitty workspace
 doctor. No implementation files are affected.
+
+## 2026-08-10 — Windows worktree and runtime fallback
+
+Spec Kitty 3.2.5 resolved `.git`-file worktrees to the common repository root
+on Windows, so the normal mission checkout could not see its own tasks. A
+temporary normal detached checkout was used to preserve the pushed coordination
+branch and protected `main` topology. The task finalizer also rejected `main`
+as a planning destination; its generated lanes were run with a temporary
+coordination-branch target and then restored to `main` in the committed mission
+metadata.
+
+The implementation guard continued to report WPs as unfinalized even after
+`tasks`, `finalize-tasks --validate-only`, and `lanes.json` all passed. Its
+materializer also ignored the emitted status-transition schema. Per the owner’s
+blanket authorization, implementation proceeds in dependency order in the
+coordination checkout, with Spec Kitty task prompts, acceptance matrix, status
+artifacts, and validation/review evidence retained as the source of governance
+state. This is an execution-tooling deviation only; it does not change product
+scope or the `main` merge target.
+
+## 2026-08-10 â€” local-only continuation
+
+At the ownerâ€™s direction, the final acceptance pass does not pull new Anoka
+County data. The existing CSV supports ingestion, comparables, rankings, and
+the read-only API baseline. County geometry, exact tile-coordinate coverage,
+upstream seven-day tile population, and durable PolymorphDB publication remain
+explicitly unverified in the acceptance matrix until the operator supplies or
+authorizes the required local geometry/data inputs.
+
+## 2026-08-10 â€” owner-authorized main merge exception
+
+The owner explicitly authorized applying the mission branch to `main` despite
+the acceptance matrix remaining `fail`. This bypasses the normal Spec Kitty
+acceptance prerequisite by explicit project-owner direction; it does not mark
+the mission accepted and does not hide the outstanding implementation gaps.
+The merge is performed as a normal non-rewriting merge so the baseline and
+follow-up evidence remain visible in repository history.

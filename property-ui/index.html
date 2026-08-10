@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anoka County Property Tax Explorer</title>
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div><p class="eyebrow">Anoka County · public data explorer</p><h1>Property tax explorer</h1></div>
+    <nav aria-label="View selection"><button class="tab active" data-view="property">Property search</button><button class="tab" data-view="county">County map</button></nav>
+  </header>
+  <main>
+    <section class="search-panel" aria-labelledby="search-title">
+      <h2 id="search-title">Find a property</h2>
+      <form id="search-form"><label for="search-query">Address, city, ZIP, or parcel ID</label><div class="search-row"><input id="search-query" name="q" autocomplete="off" placeholder="Example: 23640 Nacre St" required><select id="year" aria-label="Tax year"></select><button type="submit">Search</button></div></form>
+      <p id="status" class="status" role="status">Loading available tax years…</p>
+      <div id="results" class="results" aria-live="polite"></div>
+    </section>
+    <section id="property-view" class="view active" aria-labelledby="property-title">
+      <div class="view-grid"><article class="card detail-card"><h2 id="property-title">Select a property</h2><div id="detail"><p>Search results will show tax history, effective rate, and a defensible comparable cohort.</p></div></article><div id="property-map" class="map" aria-label="Selected property map"></div></div>
+    </section>
+    <section id="county-view" class="view" aria-labelledby="county-title"><div class="county-toolbar"><h2 id="county-title">County-wide effective-rate ranking</h2><p>Green → yellow → orange → red represents the selected year’s relative rate. Only CSV-backed records are returned.</p></div><div id="county-map" class="map large-map"></div><div id="ranking-list" class="ranking-list"></div></section>
+  </main>
+  <footer>Informational analysis only. Data source: Anoka County tax records. Map data © OpenStreetMap contributors; rendered with MapLibre.</footer>
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="/map.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

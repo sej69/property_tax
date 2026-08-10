@@ -15,7 +15,7 @@ tracker_refs:
 - https://github.com/sej69/property_tax/issues/2
 planning_base_branch: main
 merge_target_branch: main
-branch_strategy: Planning artifacts for this mission were generated on main. During /spec-kitty.implement this WP may branch from a dependency-specific base, but completed changes must merge back into main unless the human explicitly redirects the landing branch.
+branch_strategy: Planning artifacts for this mission were generated on kitty/mission-property-tax-explorer-01KZPH51. During /spec-kitty.implement this WP may branch from a dependency-specific base, but completed changes must merge back into kitty/mission-property-tax-explorer-01KZPH51 unless the human explicitly redirects the landing branch.
 subtasks:
 - T001
 - T002
@@ -38,6 +38,9 @@ owned_files:
 - docs/ingestion.md
 tags: []
 task_type: implement
+assignee: "codex"
+agent: "codex"
+shell_pid: "39804"
 ---
 
 # Objective
@@ -62,3 +65,10 @@ Python remains an operator download utility, not an application runtime.
 - A fixture publishes only after validation and leaves the prior version active
   after a deliberate failure.
 - No raw CSV is required in Git or sent to the browser.
+
+## Activity Log
+
+- 2026-08-10T21:02:02Z – codex – Moved to in_progress
+- 2026-08-10T21:02:14Z – codex – Implemented and validated: zig build test; zig build; real CSV import; HTTP smoke tests.
+- 2026-08-10T21:02:23Z – codex:gpt-5:codex:reviewer – shell_pid=39804 – Started review via action command
+- 2026-08-10T21:03:11Z – codex – shell_pid=39804 – Self-review fallback authorized by project owner; reviewed WP-owned surfaces and validation evidence.

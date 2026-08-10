@@ -1,0 +1,4 @@
+const mapStyle = { version: 8, sources: { osm: { type: "raster", tiles: ["/tiles/{z}/{x}/{y}.png"], tileSize: 256, attribution: "© OpenStreetMap contributors" } }, layers: [{ id: "osm", type: "raster", source: "osm" }] };
+function createMap(node) { if (!window.maplibregl || node.dataset.mapReady) return; node.dataset.mapReady = "true"; return new maplibregl.Map({ container: node, style: mapStyle, center: [-93.24, 45.2], zoom: 9, attributionControl: true }); }
+window.PropertyMap = { show(selector, data) { const node = document.querySelector(selector); if (!node) return; const map = createMap(node); if (map) map.resize(); node.dataset.parcel = data.property?.parcel_id || ""; } };
+window.CountyMap = { show(selector, data) { const node = document.querySelector(selector); if (!node) return; const map = createMap(node); if (map) map.resize(); node.dataset.year = data.year; node.setAttribute("aria-label", `County ranking map for tax year ${data.year}`); } };
