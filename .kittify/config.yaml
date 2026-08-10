@@ -1,0 +1,12 @@
+project:
+  uuid: 1ddc48ac-3069-4d9b-a2ff-ae784e987b4b
+  slug: property-tax
+  node_id: f1378eabfc1d
+  build_id: 6b8e9736-bb33-5629-9c14-57e1527174b5
+vcs:
+  type: git
+agents:
+  available:
+  - codex
+  auto_commit: true
+  lint_on_edit: false
