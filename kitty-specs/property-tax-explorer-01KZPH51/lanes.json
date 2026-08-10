@@ -3,7 +3,7 @@
   "mission_slug": "property-tax-explorer-01KZPH51",
   "mission_id": "01KZPH51EJ9CBPM1GSHPHTS75M",
   "mission_branch": "kitty/mission-property-tax-explorer-01KZPH51",
-  "target_branch": "kitty/mission-property-tax-explorer-01KZPH51",
+  "target_branch": "main",
   "lanes": [
     {
       "lane_id": "lane-a",
