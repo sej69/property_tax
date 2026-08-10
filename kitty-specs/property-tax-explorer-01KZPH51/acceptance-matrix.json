@@ -30,8 +30,8 @@
     {"criterion_id":"FR-024","description":"Reproducible tests, Linux benchmarks, accessibility, dependency/license, and abuse/rate-limit validation are complete.","proof_type":"automated_test","evidence":"zig build test passed 2/2; license and validation docs exist; benchmark/accessibility/rate-limit proof is absent","pass_fail":"fail","verified_by":"codex","verified_at":"2026-08-10T00:00:00Z","notes":"Only the available local build and smoke checks were run."}
   ],
   "negative_invariants": [
-    {"invariant_id":"NI-001","description":"No public upload or mutation endpoint exists.","evidence":"app/app.zig rejects non-GET requests; no upload route; live API smoke check","pass_fail":"pass","verified_by":"codex","verified_at":"2026-08-10T00:00:00Z"},
-    {"invariant_id":"NI-002","description":"Unknown parcel IDs are not returned from the local CSV-backed service.","evidence":"unknown-property request returned 404","pass_fail":"pass","verified_by":"codex","verified_at":"2026-08-10T00:00:00Z"},
-    {"invariant_id":"NI-003","description":"No non-CSV parcel geometry or tile coverage is exposed.","evidence":"geometry is null and tile route returns 403 without a coverage index","pass_fail":"pass","verified_by":"codex","verified_at":"2026-08-10T00:00:00Z"}
+    {"invariant_id":"NI-001","description":"No public upload or mutation endpoint exists.","verification_method":"automated HTTP smoke test and source review","evidence":"app/app.zig rejects non-GET requests; no upload route; live API smoke check","pass_fail":"pass","verified_by":"codex","verified_at":"2026-08-10T00:00:00Z"},
+    {"invariant_id":"NI-002","description":"Unknown parcel IDs are not returned from the local CSV-backed service.","verification_method":"automated HTTP smoke test","evidence":"unknown-property request returned 404","pass_fail":"pass","verified_by":"codex","verified_at":"2026-08-10T00:00:00Z"},
+    {"invariant_id":"NI-003","description":"No non-CSV parcel geometry or tile coverage is exposed.","verification_method":"automated HTTP smoke test and source review","evidence":"geometry is null and tile route returns 403 without a coverage index","pass_fail":"pass","verified_by":"codex","verified_at":"2026-08-10T00:00:00Z"}
   ]
 }
