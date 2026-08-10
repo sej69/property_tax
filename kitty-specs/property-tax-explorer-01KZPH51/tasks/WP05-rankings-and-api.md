@@ -1,15 +1,46 @@
 ---
 work_package_id: WP05
 title: Build rankings and the read-only API
-dependencies: [WP02, WP03, WP04]
-requirement_refs: [FR-008, FR-009, FR-010, FR-011, FR-019, FR-020, NFR-001, NFR-002, NFR-006]
+dependencies:
+- WP02
+- WP03
+- WP04
+requirement_refs:
+- FR-008
+- FR-009
+- FR-010
+- FR-011
+- FR-019
+- FR-020
+- NFR-001
+- NFR-002
+- NFR-006
+tracker_refs:
+- https://github.com/sej69/property_tax/issues/6
+- https://github.com/sej69/property_tax/issues/7
 planning_base_branch: main
 merge_target_branch: main
-subtasks: [T015, T016, T017, T018]
+branch_strategy: Planning artifacts for this mission were generated on main. During /spec-kitty.implement this WP may branch from a dependency-specific base, but completed changes must merge back into main unless the human explicitly redirects the landing branch.
+subtasks:
+- T015
+- T016
+- T017
+- T018
+history: []
+authoritative_surface: ranking/
+create_intent:
+- ranking/ranking.zig
+- api/api.zig
+- tests/api_test.zig
+- docs/api.md
+execution_mode: code_change
+owned_files:
+- ranking/ranking.zig
+- api/api.zig
+- tests/api_test.zig
+- docs/api.md
+tags: []
 task_type: implement
-tracker_refs:
-  - https://github.com/sej69/property_tax/issues/6
-  - https://github.com/sej69/property_tax/issues/7
 ---
 
 # Objective

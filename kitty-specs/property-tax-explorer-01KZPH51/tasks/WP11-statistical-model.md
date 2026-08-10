@@ -1,14 +1,40 @@
 ---
 work_package_id: WP11
 title: Implement the phase-two independent statistical model
-dependencies: [WP04, WP05, WP10]
-requirement_refs: [FR-018, NFR-002, NFR-009]
+dependencies:
+- WP04
+- WP05
+- WP10
+requirement_refs:
+- FR-018
+- NFR-002
+- NFR-009
+tracker_refs:
+- https://github.com/sej69/property_tax/issues/13
 planning_base_branch: main
 merge_target_branch: main
-subtasks: [T035, T036, T037]
+branch_strategy: Planning artifacts for this mission were generated on main. During /spec-kitty.implement this WP may branch from a dependency-specific base, but completed changes must merge back into main unless the human explicitly redirects the landing branch.
+subtasks:
+- T035
+- T036
+- T037
+history: []
+authoritative_surface: model/
+create_intent:
+- model/model.zig
+- model/model_api.zig
+- model-ui/model.js
+- tests/model_test.zig
+- docs/statistical-model.md
+execution_mode: code_change
+owned_files:
+- model/model.zig
+- model/model_api.zig
+- model-ui/model.js
+- tests/model_test.zig
+- docs/statistical-model.md
+tags: []
 task_type: implement
-tracker_refs:
-  - https://github.com/sej69/property_tax/issues/13
 ---
 
 # Objective

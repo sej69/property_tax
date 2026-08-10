@@ -1,14 +1,34 @@
 ---
 work_package_id: WP02
 title: Prove the PolymorphDB provider vertical slice
-dependencies: [WP01]
-requirement_refs: [FR-006, NFR-005, NFR-006]
+dependencies:
+- WP01
+requirement_refs:
+- FR-006
+- NFR-005
+- NFR-006
+tracker_refs:
+- https://github.com/sej69/property_tax/issues/3
 planning_base_branch: main
 merge_target_branch: main
-subtasks: [T005, T006, T007]
+branch_strategy: Planning artifacts for this mission were generated on main. During /spec-kitty.implement this WP may branch from a dependency-specific base, but completed changes must merge back into main unless the human explicitly redirects the landing branch.
+subtasks:
+- T005
+- T006
+- T007
+history: []
+authoritative_surface: provider/
+create_intent:
+- provider/provider.zig
+- tests/provider_test.zig
+- docs/polymorphdb-provider.md
+execution_mode: code_change
+owned_files:
+- provider/provider.zig
+- tests/provider_test.zig
+- docs/polymorphdb-provider.md
+tags: []
 task_type: implement
-tracker_refs:
-  - https://github.com/sej69/property_tax/issues/3
 ---
 
 # Objective

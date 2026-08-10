@@ -25,3 +25,13 @@ provider binding was present during mission creation. The mission specification
 records every issue link and requires an explicit disposition for each issue.
 GitHub remains the public ticket record while Spec Kitty remains the governed
 implementation workflow.
+
+## 2026-08-10 — task finalization worktree recovery
+
+After ownership validation passed, `spec-kitty tasks` generated the expected
+work-package events but its safe-commit path staged status artifacts beneath an
+unregistered `.worktrees/property-tax-explorer-01KZPH51-coord` husk instead of
+the mission root. The generated status snapshot is therefore materialized at
+the mission root from the canonical 11-package task definition before runtime
+advancement. The unregistered husk is removed by the Spec Kitty workspace
+doctor. No implementation files are affected.

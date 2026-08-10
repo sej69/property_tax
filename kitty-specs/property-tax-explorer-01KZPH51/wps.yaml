@@ -2,7 +2,7 @@ work_packages:
   - id: WP01
     title: "Build Zig service and versioned ingestion"
     dependencies: []
-    owned_files: ["build.zig", "src/", "tests/fixtures/ingest/", "docs/ingestion.md"]
+    owned_files: ["build.zig", "app/app.zig", "ingest/ingest.zig", "tests/ingest_test.zig", "docs/ingestion.md"]
     requirement_refs: [FR-001, FR-002, FR-003, FR-004, FR-005, NFR-004, NFR-005]
     plan_concern_refs: [IC-01]
     subtasks: [T001, T002, T003, T004]
@@ -11,7 +11,7 @@ work_packages:
   - id: WP02
     title: "Prove the PolymorphDB provider vertical slice"
     dependencies: [WP01]
-    owned_files: ["src/provider/", "tests/contract/provider/", "docs/polymorphdb-provider.md"]
+    owned_files: ["provider/provider.zig", "tests/provider_test.zig", "docs/polymorphdb-provider.md"]
     requirement_refs: [FR-006, NFR-005, NFR-006]
     plan_concern_refs: [IC-02]
     subtasks: [T005, T006, T007]
@@ -20,7 +20,7 @@ work_packages:
   - id: WP03
     title: "Join county geometry and build coverage indexes"
     dependencies: [WP01]
-    owned_files: ["src/geometry/", "tests/fixtures/geometry/", "tests/contract/geometry/", "docs/geometry-and-tiles.md"]
+    owned_files: ["geometry/geometry.zig", "tests/geometry_test.zig", "docs/geometry-and-tiles.md"]
     requirement_refs: [FR-007, FR-021, NFR-003, NFR-007]
     plan_concern_refs: [IC-03]
     subtasks: [T008, T009, T010]
@@ -29,7 +29,7 @@ work_packages:
   - id: WP04
     title: "Implement the hierarchical comparable engine"
     dependencies: [WP01, WP02]
-    owned_files: ["src/comparable/", "tests/fixtures/comparables/", "tests/contract/comparables/", "docs/comparable-methodology.md"]
+    owned_files: ["comparable/comparable.zig", "tests/comparable_test.zig", "docs/comparable-methodology.md"]
     requirement_refs: [FR-012, FR-013, FR-014, FR-015, FR-016, FR-017, FR-018]
     plan_concern_refs: [IC-04]
     subtasks: [T011, T012, T013, T014]
@@ -38,7 +38,7 @@ work_packages:
   - id: WP05
     title: "Build rankings and the read-only API"
     dependencies: [WP02, WP03, WP04]
-    owned_files: ["src/ranking/", "src/api/", "tests/contract/api/", "docs/api.md"]
+    owned_files: ["ranking/ranking.zig", "api/api.zig", "tests/api_test.zig", "docs/api.md"]
     requirement_refs: [FR-008, FR-009, FR-010, FR-011, FR-019, FR-020, NFR-001, NFR-002, NFR-006]
     plan_concern_refs: [IC-05]
     subtasks: [T015, T016, T017, T018]
@@ -47,7 +47,7 @@ work_packages:
   - id: WP06
     title: "Implement the seven-day tile proxy and cache"
     dependencies: [WP03, WP05]
-    owned_files: ["src/tiles/", "tests/contract/tiles/", "docs/operations.md"]
+    owned_files: ["tiles/tiles.zig", "tests/tiles_test.zig", "docs/tile-policy.md"]
     requirement_refs: [FR-021, NFR-003, NFR-007]
     plan_concern_refs: [IC-03, IC-05]
     subtasks: [T019, T020, T021]
@@ -56,7 +56,7 @@ work_packages:
   - id: WP07
     title: "Build property search and detail UI"
     dependencies: [WP05, WP06]
-    owned_files: ["web/index.html", "web/app.js", "web/styles.css", "tests/browser/property-detail/"]
+    owned_files: ["property-ui/index.html", "property-ui/app.js", "property-ui/styles.css", "tests/property_ui_test.js"]
     requirement_refs: [FR-008, FR-009, FR-010, FR-011, FR-022, NFR-008]
     plan_concern_refs: [IC-06]
     subtasks: [T022, T023, T024]
@@ -65,7 +65,7 @@ work_packages:
   - id: WP08
     title: "Build the county-wide map explorer"
     dependencies: [WP05, WP06]
-    owned_files: ["web/map.js", "web/map.css", "tests/browser/county-map/"]
+    owned_files: ["county-ui/map.js", "county-ui/map.css", "tests/county_map_test.js"]
     requirement_refs: [FR-019, FR-021, FR-022, NFR-003, NFR-008]
     plan_concern_refs: [IC-06]
     subtasks: [T025, T026, T027]
@@ -74,7 +74,7 @@ work_packages:
   - id: WP09
     title: "Add import publication and self-hosted operations"
     dependencies: [WP01, WP02, WP03, WP04, WP05, WP06, WP07, WP08]
-    owned_files: ["src/operations/", "deploy/", "docs/operations.md", "tests/lifecycle/"]
+    owned_files: ["operations/operations.zig", "deploy/Caddyfile", "docs/deployment.md", "tests/lifecycle_test.zig"]
     requirement_refs: [FR-005, FR-023, NFR-004, NFR-005]
     plan_concern_refs: [IC-07]
     subtasks: [T028, T029, T030]
@@ -83,7 +83,7 @@ work_packages:
   - id: WP10
     title: "Validate tests, benchmarks, accessibility, and security"
     dependencies: [WP05, WP06, WP07, WP08, WP09]
-    owned_files: ["tests/", "docs/validation.md", "docs/licenses.md"]
+    owned_files: ["validation/validation_test.zig", "docs/validation.md", "docs/licenses.md"]
     requirement_refs: [FR-024, NFR-001, NFR-007, NFR-008, NFR-009]
     plan_concern_refs: [IC-07]
     subtasks: [T031, T032, T033, T034]
@@ -92,7 +92,7 @@ work_packages:
   - id: WP11
     title: "Implement the phase-two independent statistical model"
     dependencies: [WP04, WP05, WP10]
-    owned_files: ["src/model/", "src/api/", "web/", "tests/contract/model/", "docs/statistical-model.md"]
+    owned_files: ["model/model.zig", "model/model_api.zig", "model-ui/model.js", "tests/model_test.zig", "docs/statistical-model.md"]
     requirement_refs: [FR-018, NFR-002, NFR-009]
     plan_concern_refs: [IC-08]
     subtasks: [T035, T036, T037]

@@ -1,14 +1,40 @@
 ---
 work_package_id: WP04
 title: Implement the hierarchical comparable engine
-dependencies: [WP01, WP02]
-requirement_refs: [FR-012, FR-013, FR-014, FR-015, FR-016, FR-017, FR-018]
+dependencies:
+- WP01
+- WP02
+requirement_refs:
+- FR-012
+- FR-013
+- FR-014
+- FR-015
+- FR-016
+- FR-017
+- FR-018
+tracker_refs:
+- https://github.com/sej69/property_tax/issues/5
 planning_base_branch: main
 merge_target_branch: main
-subtasks: [T011, T012, T013, T014]
+branch_strategy: Planning artifacts for this mission were generated on main. During /spec-kitty.implement this WP may branch from a dependency-specific base, but completed changes must merge back into main unless the human explicitly redirects the landing branch.
+subtasks:
+- T011
+- T012
+- T013
+- T014
+history: []
+authoritative_surface: comparable/
+create_intent:
+- comparable/comparable.zig
+- tests/comparable_test.zig
+- docs/comparable-methodology.md
+execution_mode: code_change
+owned_files:
+- comparable/comparable.zig
+- tests/comparable_test.zig
+- docs/comparable-methodology.md
+tags: []
 task_type: implement
-tracker_refs:
-  - https://github.com/sej69/property_tax/issues/5
 ---
 
 # Objective

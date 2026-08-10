@@ -1,14 +1,35 @@
 ---
 work_package_id: WP03
 title: Join county geometry and build coverage indexes
-dependencies: [WP01]
-requirement_refs: [FR-007, FR-021, NFR-003, NFR-007]
+dependencies:
+- WP01
+requirement_refs:
+- FR-007
+- FR-021
+- NFR-003
+- NFR-007
+tracker_refs:
+- https://github.com/sej69/property_tax/issues/4
 planning_base_branch: main
 merge_target_branch: main
-subtasks: [T008, T009, T010]
+branch_strategy: Planning artifacts for this mission were generated on main. During /spec-kitty.implement this WP may branch from a dependency-specific base, but completed changes must merge back into main unless the human explicitly redirects the landing branch.
+subtasks:
+- T008
+- T009
+- T010
+history: []
+authoritative_surface: geometry/
+create_intent:
+- geometry/geometry.zig
+- tests/geometry_test.zig
+- docs/geometry-and-tiles.md
+execution_mode: code_change
+owned_files:
+- geometry/geometry.zig
+- tests/geometry_test.zig
+- docs/geometry-and-tiles.md
+tags: []
 task_type: implement
-tracker_refs:
-  - https://github.com/sej69/property_tax/issues/4
 ---
 
 # Objective

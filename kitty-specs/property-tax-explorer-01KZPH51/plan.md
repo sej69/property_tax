@@ -47,8 +47,12 @@ data.
 ## Project structure decision
 
 ```text
-src/                  Zig service, models, ingestion, provider, ranking, API
-web/                  Browser shell, MapLibre UI, styles, accessible tables
+app/                  Zig service entry point and configuration
+ingest/ provider/     CSV staging and PolymorphDB adapter
+geometry/ comparable/ ranking/ api/ tiles/ model/
+                      Isolated Zig implementation surfaces
+property-ui/ county-ui/
+                      Browser property and county map surfaces
 tests/                Deterministic fixtures, contract, browser, lifecycle tests
 build.zig             Linux build and test entry point
 docs/                 Provider, ingestion, geometry, API, operations, validation

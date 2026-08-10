@@ -2,14 +2,42 @@
 work_package_id: WP01
 title: Build Zig service and versioned ingestion
 dependencies: []
-requirement_refs: [FR-001, FR-002, FR-003, FR-004, FR-005, NFR-004, NFR-005]
+requirement_refs:
+- FR-001
+- FR-002
+- FR-003
+- FR-004
+- FR-005
+- NFR-004
+- NFR-005
+tracker_refs:
+- https://github.com/sej69/property_tax/issues/1
+- https://github.com/sej69/property_tax/issues/2
 planning_base_branch: main
 merge_target_branch: main
-subtasks: [T001, T002, T003, T004]
+branch_strategy: Planning artifacts for this mission were generated on main. During /spec-kitty.implement this WP may branch from a dependency-specific base, but completed changes must merge back into main unless the human explicitly redirects the landing branch.
+subtasks:
+- T001
+- T002
+- T003
+- T004
+history: []
+authoritative_surface: app/
+create_intent:
+- build.zig
+- app/app.zig
+- ingest/ingest.zig
+- tests/ingest_test.zig
+- docs/ingestion.md
+execution_mode: code_change
+owned_files:
+- build.zig
+- app/app.zig
+- ingest/ingest.zig
+- tests/ingest_test.zig
+- docs/ingestion.md
+tags: []
 task_type: implement
-tracker_refs:
-  - https://github.com/sej69/property_tax/issues/1
-  - https://github.com/sej69/property_tax/issues/2
 ---
 
 # Objective
