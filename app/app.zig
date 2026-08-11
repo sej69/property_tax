@@ -66,7 +66,7 @@ fn handle(io: std.Io, allocator: std.mem.Allocator, store: *const ingest.Store, 
     if (std.mem.startsWith(u8, target, "/api/v1/properties/")) return propertyDetail(request, store);
     if (std.mem.startsWith(u8, target, "/api/v1/rankings")) return rankings(request, store);
     if (std.mem.startsWith(u8, target, "/api/v1/map")) return mapData(request, store);
-    if (std.mem.startsWith(u8, target, "/tiles/")) return tileRequest(request, store);
+    if (std.mem.startsWith(u8, target, "/tiles/")) return tileRequest(io, allocator, request, store);
     return staticFile(io, allocator, request, target);
 }
 
@@ -156,10 +156,80 @@ fn mapData(request: *http.Server.Request, store: *const ingest.Store) !void {
     return respond(request, .ok, "application/geo+json", "{\"type\":\"FeatureCollection\",\"features\":[],\"scope\":\"CSV-backed properties only; geometry join required\"}");
 }
 
-fn tileRequest(request: *http.Server.Request, store: *const ingest.Store) !void {
+fn tileRequest(io: std.Io, allocator: std.mem.Allocator, request: *http.Server.Request, store: *const ingest.Store) !void {
     const policy = tiles.CachePolicy{ .coverage = .{ .csv_backed_count = store.records.items.len } };
-    _ = policy;
-    return respond(request, .forbidden, "application/json", "{\"error\":\"tile access requires a CSV-backed geometry coverage index\"}");
+    const coordinates = parseTileTarget(request.head.target) orelse return respond(request, .bad_request, "application/json", "{\"error\":\"invalid tile path\"}");
+    if (!policy.allows(coordinates.z, coordinates.x, coordinates.y)) {
+        return respond(request, .forbidden, "application/json", "{\"error\":\"tile is outside the CSV-backed county coverage envelope\"}");
+    }
+
+    var tile_path_buffer: [128]u8 = undefined;
+    const tile_path = try std.fmt.bufPrint(&tile_path_buffer, ".cache/tiles/{d}/{d}/{d}.png", .{ coordinates.z, coordinates.x, coordinates.y });
+    const now_ms = std.Io.Clock.real.now(io).toMilliseconds();
+    if (std.Io.Dir.cwd().statFile(io, tile_path, .{})) |stat| {
+        const age_ms = now_ms - stat.mtime.toMilliseconds();
+        if (age_ms >= 0 and age_ms <= policy.max_age_seconds * std.time.ms_per_s) {
+            const cached = std.Io.Dir.cwd().readFileAlloc(io, tile_path, allocator, .limited(4 * 1024 * 1024)) catch null;
+            if (cached) |body| {
+                defer allocator.free(body);
+                return respondTile(request, body, true);
+            }
+        }
+    } else |_| {}
+
+    var upstream_buffer: [256]u8 = undefined;
+    const upstream_url = try std.fmt.bufPrint(&upstream_buffer, "https://tile.openstreetmap.org/{d}/{d}/{d}.png", .{ coordinates.z, coordinates.x, coordinates.y });
+    var response_storage: [4 * 1024 * 1024]u8 = undefined;
+    var response_writer = std.Io.Writer.fixed(&response_storage);
+    var client: http.Client = .{ .allocator = allocator, .io = io };
+    defer client.deinit();
+    const upstream_headers = [_]http.Header{
+        .{ .name = "User-Agent", .value = "AnokaCountyPropertyTaxExplorer/0.1" },
+        .{ .name = "Accept", .value = "image/png" },
+    };
+    const result = client.fetch(.{
+        .location = .{ .url = upstream_url },
+        .response_writer = &response_writer,
+        .headers = .{ .accept_encoding = .{ .override = "identity" } },
+        .extra_headers = &upstream_headers,
+        .keep_alive = false,
+    }) catch return respond(request, .bad_gateway, "application/json", "{\"error\":\"OpenStreetMap tile request failed\"}");
+    if (result.status != .ok) return respond(request, .bad_gateway, "application/json", "{\"error\":\"OpenStreetMap tile upstream returned an error\"}");
+    const body = response_writer.buffered();
+    if (body.len == 0) return respond(request, .bad_gateway, "application/json", "{\"error\":\"OpenStreetMap tile upstream returned an empty response\"}");
+
+    const directory_path = try std.fmt.bufPrint(&tile_path_buffer, ".cache/tiles/{d}/{d}", .{ coordinates.z, coordinates.x });
+    std.Io.Dir.cwd().createDirPath(io, directory_path) catch {};
+    std.Io.Dir.cwd().writeFile(io, .{ .sub_path = tile_path, .data = body, .flags = .{ .truncate = true } }) catch {};
+    return respondTile(request, body, false);
+}
+
+const TileCoordinates = struct { z: u8, x: u32, y: u32 };
+
+fn parseTileTarget(target: []const u8) ?TileCoordinates {
+    var parts = std.mem.splitScalar(u8, target, '/');
+    _ = parts.next();
+    if (!std.mem.eql(u8, parts.next() orelse return null, "tiles")) return null;
+    const z_text = parts.next() orelse return null;
+    const x_text = parts.next() orelse return null;
+    var y_text = parts.next() orelse return null;
+    if (parts.next() != null or !std.mem.endsWith(u8, y_text, ".png")) return null;
+    y_text = y_text[0 .. y_text.len - 4];
+    const z = std.fmt.parseInt(u8, z_text, 10) catch return null;
+    const x = std.fmt.parseInt(u32, x_text, 10) catch return null;
+    const y = std.fmt.parseInt(u32, y_text, 10) catch return null;
+    return .{ .z = z, .x = x, .y = y };
+}
+
+fn respondTile(request: *http.Server.Request, body: []const u8, cached: bool) !void {
+    const cache_state = if (cached) "HIT" else "MISS";
+    const headers = [_]http.Header{
+        .{ .name = "Content-Type", .value = "image/png" },
+        .{ .name = "Cache-Control", .value = "public, max-age=604800" },
+        .{ .name = "X-Tile-Cache", .value = cache_state },
+        .{ .name = "X-Content-Type-Options", .value = "nosniff" },
+    };
+    try request.respond(body, .{ .status = .ok, .extra_headers = &headers });
 }
 
 fn staticFile(io: std.Io, allocator: std.mem.Allocator, request: *http.Server.Request, target: []const u8) !void {

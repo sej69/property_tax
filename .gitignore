@@ -15,6 +15,7 @@ venv/
 # Zig build outputs and caches
 zig-out/
 .zig-cache/
+.cache/
 
 # Spec Kitty lane and coordination worktrees
 .worktrees/
