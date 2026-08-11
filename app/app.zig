@@ -63,6 +63,7 @@ fn handle(io: std.Io, allocator: std.mem.Allocator, store: *const ingest.Store, 
     if (std.mem.eql(u8, target, "/healthz")) return health(request, store);
     if (std.mem.eql(u8, target, "/api/v1/years")) return years(request, store);
     if (std.mem.startsWith(u8, target, "/api/v1/properties/search")) return search(request, store);
+    if (std.mem.startsWith(u8, target, "/api/v1/properties/") and std.mem.indexOf(u8, target, "/location") != null) return propertyLocation(io, allocator, request, store);
     if (std.mem.startsWith(u8, target, "/api/v1/properties/")) return propertyDetail(request, store);
     if (std.mem.startsWith(u8, target, "/api/v1/rankings")) return rankings(request, store);
     if (std.mem.startsWith(u8, target, "/api/v1/map")) return mapData(request, store);
@@ -119,6 +120,73 @@ fn propertyDetail(request: *http.Server.Request, store: *const ingest.Store) !vo
     var body: [4096]u8 = undefined;
     const rendered = try std.fmt.bufPrint(&body, "{{\"property\":{{\"parcel_id\":\"{s}\",\"address\":\"{s}\",\"city\":\"{s}\",\"tax_year\":{d},\"market_value\":{d:.2},\"total_tax\":{d:.2},\"effective_rate\":{d:.4},\"levy_code\":\"{s}\",\"property_class\":\"{s}\",\"homestead\":\"{s}\",\"neighborhood\":\"{s}\"}},\"comparables\":{{\"count\":{d},\"median_rate\":{d:.4},\"lower_rate\":{d:.4},\"upper_rate\":{d:.4},\"confidence\":\"{s}\"}},\"geometry\":null,\"geometry_status\":\"county GIS join pending\"}}", .{ property.parcelId(), property.addressText(), property.cityText(), property.tax_year, property.market_value, property.total_tax, comparable.effectiveRate(property), property.levyCodeText(), property.classText(), property.homesteadText(), property.neighborhoodText(), result.count, result.median_rate, result.lower_rate, result.upper_rate, result.confidence });
     return respond(request, .ok, "application/json", rendered);
+}
+
+fn propertyLocation(io: std.Io, allocator: std.mem.Allocator, request: *http.Server.Request, store: *const ingest.Store) !void {
+    const prefix = "/api/v1/properties/";
+    const suffix = "/location";
+    const rest = request.head.target[prefix.len..];
+    const suffix_start = std.mem.indexOf(u8, rest, suffix) orelse return respond(request, .not_found, "application/json", "{\"error\":\"invalid property location path\"}");
+    const trailing = rest[suffix_start + suffix.len ..];
+    if (trailing.len > 0 and trailing[0] != '?') return respond(request, .not_found, "application/json", "{\"error\":\"invalid property location path\"}");
+    const parcel_id = rest[0..suffix_start];
+    var selected: ?*const ingest.Property = null;
+    for (store.records.items) |*property| if (std.mem.eql(u8, property.parcelId(), parcel_id)) { selected = property; break; };
+    const property = selected orelse return respond(request, .not_found, "application/json", "{\"error\":\"CSV-backed property not found\"}");
+
+    var cache_path_buffer: [128]u8 = undefined;
+    const cache_path = try std.fmt.bufPrint(&cache_path_buffer, ".cache/geocode/{s}.json", .{parcel_id});
+    const now_ms = std.Io.Clock.real.now(io).toMilliseconds();
+    if (std.Io.Dir.cwd().statFile(io, cache_path, .{})) |stat| {
+        const age_ms = now_ms - stat.mtime.toMilliseconds();
+        if (age_ms >= 0 and age_ms <= 7 * 24 * std.time.ms_per_s) {
+            const cached = std.Io.Dir.cwd().readFileAlloc(io, cache_path, allocator, .limited(4096)) catch null;
+            if (cached) |body| {
+                defer allocator.free(body);
+                return respondLocation(request, .ok, body, "HIT");
+            }
+        }
+    } else |_| {}
+
+    var upstream_url_buffer: [1024]u8 = undefined;
+    var upstream_url_offset: usize = 0;
+    append(&upstream_url_buffer, &upstream_url_offset, "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=us&q=");
+    if (!appendUrlEncoded(&upstream_url_buffer, &upstream_url_offset, property.addressText()) or
+        !appendUrlEncoded(&upstream_url_buffer, &upstream_url_offset, ", ") or
+        !appendUrlEncoded(&upstream_url_buffer, &upstream_url_offset, property.cityText()) or
+        !appendUrlEncoded(&upstream_url_buffer, &upstream_url_offset, ", MN ") or
+        !appendUrlEncoded(&upstream_url_buffer, &upstream_url_offset, property.zipText())) {
+        return respond(request, .bad_request, "application/json", "{\"error\":\"property address is too long to locate\"}");
+    }
+
+    var response_storage: [256 * 1024]u8 = undefined;
+    var response_writer = std.Io.Writer.fixed(&response_storage);
+    var client: http.Client = .{ .allocator = allocator, .io = io };
+    defer client.deinit();
+    const upstream_headers = [_]http.Header{
+        .{ .name = "User-Agent", .value = "AnokaCountyPropertyTaxExplorer/0.1 (https://github.com/sej69/property_tax)" },
+        .{ .name = "Accept", .value = "application/json" },
+    };
+    const result = client.fetch(.{
+        .location = .{ .url = upstream_url_buffer[0..upstream_url_offset] },
+        .response_writer = &response_writer,
+        .headers = .{ .accept_encoding = .{ .override = "identity" } },
+        .extra_headers = &upstream_headers,
+        .keep_alive = false,
+    }) catch return respond(request, .bad_gateway, "application/json", "{\"error\":\"address location service unavailable\"}");
+    if (result.status != .ok) return respond(request, .bad_gateway, "application/json", "{\"error\":\"address location service returned an error\"}");
+
+    const upstream_body = response_writer.buffered();
+    const latitude_text = jsonStringField(upstream_body, "lat") orelse return respond(request, .not_found, "application/json", "{\"error\":\"address could not be located\"}");
+    const longitude_text = jsonStringField(upstream_body, "lon") orelse return respond(request, .not_found, "application/json", "{\"error\":\"address could not be located\"}");
+    const latitude = std.fmt.parseFloat(f64, latitude_text) catch return respond(request, .not_found, "application/json", "{\"error\":\"address location was invalid\"}");
+    const longitude = std.fmt.parseFloat(f64, longitude_text) catch return respond(request, .not_found, "application/json", "{\"error\":\"address location was invalid\"}");
+
+    var body: [512]u8 = undefined;
+    const rendered = try std.fmt.bufPrint(&body, "{{\"status\":\"ok\",\"latitude\":{d:.7},\"longitude\":{d:.7},\"source\":\"nominatim\"}}", .{ latitude, longitude });
+    std.Io.Dir.cwd().createDirPath(io, ".cache/geocode") catch {};
+    std.Io.Dir.cwd().writeFile(io, .{ .sub_path = cache_path, .data = rendered, .flags = .{ .truncate = true } }) catch {};
+    return respondLocation(request, .ok, rendered, "MISS");
 }
 
 fn rankings(request: *http.Server.Request, store: *const ingest.Store) !void {
@@ -232,6 +300,16 @@ fn respondTile(request: *http.Server.Request, body: []const u8, cached: bool) !v
     try request.respond(body, .{ .status = .ok, .extra_headers = &headers });
 }
 
+fn respondLocation(request: *http.Server.Request, status: http.Status, body: []const u8, cache_state: []const u8) !void {
+    const headers = [_]http.Header{
+        .{ .name = "Content-Type", .value = "application/json" },
+        .{ .name = "Cache-Control", .value = "public, max-age=604800" },
+        .{ .name = "X-Geocode-Cache", .value = cache_state },
+        .{ .name = "X-Content-Type-Options", .value = "nosniff" },
+    };
+    try request.respond(body, .{ .status = status, .extra_headers = &headers });
+}
+
 fn staticFile(io: std.Io, allocator: std.mem.Allocator, request: *http.Server.Request, target: []const u8) !void {
     const path = if (std.mem.eql(u8, target, "/") or target.len == 0) "property-ui/index.html" else if (std.mem.eql(u8, target, "/app.js")) "property-ui/app.js" else if (std.mem.eql(u8, target, "/styles.css")) "property-ui/styles.css" else if (std.mem.eql(u8, target, "/map.js")) "county-ui/map.js" else if (std.mem.eql(u8, target, "/map.css")) "county-ui/map.css" else return respond(request, .not_found, "text/plain", "not found");
     const content = std.Io.Dir.cwd().readFileAlloc(io, path, allocator, .limited(4 * 1024 * 1024)) catch return respond(request, .not_found, "text/plain", "asset not found");
@@ -251,5 +329,35 @@ fn append(buffer: []u8, offset: *usize, text: []const u8) void {
     offset.* += amount;
 }
 fn appendFmt(buffer: []u8, offset: *usize, comptime format: []const u8, args: anytype) void { const text = std.fmt.bufPrint(buffer[offset.*..], format, args) catch return; offset.* += text.len; }
+fn appendUrlEncoded(buffer: []u8, offset: *usize, text: []const u8) bool {
+    const hex = "0123456789ABCDEF";
+    for (text) |character| {
+        const unreserved = (character >= 'a' and character <= 'z') or (character >= 'A' and character <= 'Z') or (character >= '0' and character <= '9') or character == '-' or character == '_' or character == '.' or character == '~';
+        if (unreserved) {
+            if (offset.* >= buffer.len) return false;
+            buffer[offset.*] = character;
+            offset.* += 1;
+        } else {
+            if (offset.* + 3 > buffer.len) return false;
+            buffer[offset.*] = '%';
+            buffer[offset.* + 1] = hex[character >> 4];
+            buffer[offset.* + 2] = hex[character & 0x0f];
+            offset.* += 3;
+        }
+    }
+    return true;
+}
+fn jsonStringField(body: []const u8, field: []const u8) ?[]const u8 {
+    var marker: [64]u8 = undefined;
+    const marker_text = std.fmt.bufPrint(&marker, "\"{s}\"", .{field}) catch return null;
+    const marker_start = std.mem.indexOf(u8, body, marker_text) orelse return null;
+    var cursor = marker_start + marker_text.len;
+    while (cursor < body.len and (body[cursor] == ' ' or body[cursor] == '\n' or body[cursor] == '\r' or body[cursor] == '\t' or body[cursor] == ':')) cursor += 1;
+    if (cursor >= body.len or body[cursor] != '"') return null;
+    cursor += 1;
+    const value_start = cursor;
+    while (cursor < body.len) : (cursor += 1) if (body[cursor] == '"' and body[cursor - 1] != '\\') return body[value_start..cursor];
+    return null;
+}
 fn queryValue(target: []const u8, key: []const u8) ?[]const u8 { var marker_buffer: [64]u8 = undefined; const marker = std.fmt.bufPrint(&marker_buffer, "{s}=", .{key}) catch return null; const start = (std.mem.indexOf(u8, target, marker) orelse return null) + marker.len; const end = std.mem.indexOfScalarPos(u8, target, start, '&') orelse target.len; return target[start..end]; }
 fn queryInt(target: []const u8, key: []const u8) ?i32 { const value = queryValue(target, key) orelse return null; return std.fmt.parseInt(i32, value, 10) catch null; }

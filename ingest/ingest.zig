@@ -42,6 +42,7 @@ pub const Property = struct {
     pub fn parcelId(self: *const Property) []const u8 { return self.parcel_id[0..self.parcel_id_len]; }
     pub fn addressText(self: *const Property) []const u8 { return self.address[0..self.address_len]; }
     pub fn cityText(self: *const Property) []const u8 { return self.city[0..self.city_len]; }
+    pub fn zipText(self: *const Property) []const u8 { return self.zip[0..self.zip_len]; }
     pub fn classText(self: *const Property) []const u8 { return self.property_class[0..self.property_class_len]; }
     pub fn neighborhoodText(self: *const Property) []const u8 { return self.neighborhood[0..self.neighborhood_len]; }
     pub fn levyCodeText(self: *const Property) []const u8 { return self.levy_code[0..self.levy_code_len]; }

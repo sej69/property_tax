@@ -34,12 +34,14 @@ async function search(event) {
 async function loadProperty(parcelId) {
   try {
     const data = await api(`/api/v1/properties/${encodeURIComponent(parcelId)}?year=${state.year}`);
+    let location = null;
+    try { location = await api(`/api/v1/properties/${encodeURIComponent(parcelId)}/location`); } catch (_) { /* Tax details remain useful when an address cannot be located. */ }
     state.selected = data.property;
     const property = data.property; const cohort = data.comparables;
     $("#property-title").textContent = property.address || `Parcel ${property.parcel_id}`;
     $("#detail").innerHTML = `<dl class="facts"><dt>Parcel ID</dt><dd>${property.parcel_id}</dd><dt>Tax year</dt><dd>${property.tax_year}</dd><dt>Market value</dt><dd>$${property.market_value.toLocaleString()}</dd><dt>Total tax</dt><dd>$${property.total_tax.toLocaleString()}</dd><dt>Effective rate</dt><dd>${property.effective_rate.toFixed(2)}%</dd><dt>Comparable median</dt><dd>${cohort.median_rate.toFixed(2)}%</dd><dt>Comparable range</dt><dd>${cohort.lower_rate.toFixed(2)}%–${cohort.upper_rate.toFixed(2)}%</dd><dt>Confidence</dt><dd>${cohort.confidence}</dd></dl><p class="method">Eligibility uses levy code, property class, homestead status, and neighborhood before physical similarity. Tax rate is never used to select comparables.</p>`;
-    if (window.PropertyMap) window.PropertyMap.show("#property-map", data);
-    setStatus(`Showing ${property.parcel_id} for tax year ${property.tax_year}.`);
+    if (window.PropertyMap) window.PropertyMap.show("#property-map", { ...data, location });
+    setStatus(location ? `Showing ${property.parcel_id} for tax year ${property.tax_year}; map centered on the selected address.` : `Showing ${property.parcel_id} for tax year ${property.tax_year}; address location is unavailable.`);
   } catch (error) { setStatus(error.message, "error"); }
 }
 
